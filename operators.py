@@ -9,7 +9,7 @@ __all__: list[str] = [
 
 
 class QuickExportOperator(bpy.types.Operator):
-    bl_idname: str = "outliner.obj_export"
+    bl_idname: str = "qe.obj_export"
     bl_label: str = "Batch export OBJ"
     bl_description: str = "Export selected as OBJ with modifiers applied and without materials, skips non meshes."
 
@@ -36,7 +36,7 @@ class QuickExportOperator(bpy.types.Operator):
 
             obj.select_set(True)
             self.report({"INFO"}, f"Exporting {obj.name}")
-            file_path: str = str(directory / f"{context.active_object.name}.obj")
+            file_path: str = str(directory / f"{obj.name}.obj")
             bpy.ops.wm.obj_export(
                 filepath=file_path,
                 apply_modifiers=True,
@@ -54,7 +54,7 @@ class QuickExportOperator(bpy.types.Operator):
 
 
 class OpenExportOperator(bpy.types.Operator):
-    bl_idname: str = "outliner.open_export_dir"
+    bl_idname: str = "qe.open_export_dir"
     bl_label: str = "Reveal in File Explorer"
     bl_description: str = "Opens the export directory in the file explorer, if it exists."
 
